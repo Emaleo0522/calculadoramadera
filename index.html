@@ -235,8 +235,8 @@
             const ancho = parseFloat(document.getElementById('ancho').value) || 0;
             const tiempo = parseFloat(document.getElementById('tiempo').value) || 0;
 
-            // Resultado 1: altura * ancho * 0.76 (costo por cm2)
-            const resultado1 = altura * ancho * 0.760;
+            // Resultado 1: altura * ancho * 0.8735 (costo por cm2 de MDF, actualizado jun-2026)
+            const resultado1 = altura * ancho * 0.8735;
             document.getElementById('resultado1').textContent = resultado1.toFixed(3);
 
             // Cálculos para Resultado 2
@@ -245,9 +245,10 @@
             const resultado2 = multiplicado4000;
             document.getElementById('resultado2').textContent = resultado2.toFixed(3);
 
-            // Resultado 3
-            const calculo1 = (10.000 * tiempoDividido60) / 1000.000;
-            const resultado3 = calculo1 * 194.580;
+            // Resultado 3: costo de luz = (potencia_maquina_W * horas / 1000) * precio_kWh
+            // 72W = fuente real Creality Falcon 10W (24V x 3A) | 244.2376 = Cargo Variable Edemsa BIM 03/2026
+            const calculo1 = (72.000 * tiempoDividido60) / 1000.000;
+            const resultado3 = calculo1 * 244.2376;
             document.getElementById('resultado3').textContent = resultado3.toFixed(3);
 
             // Coste Total
