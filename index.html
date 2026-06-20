@@ -178,8 +178,13 @@
             </div>
 
             <div class="input-group" style="margin-top: 20px;">
-                <label for="tiempo">Tiempo:</label>
-                <input type="number" id="tiempo" step="0.1" placeholder="Ej: 5.3">
+                <label>Tiempo (como lo indica el programa de corte):</label>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                    <input type="number" id="tiempoMin" step="1" min="0" placeholder="min" style="flex: 1;">
+                    <span>min</span>
+                    <input type="number" id="tiempoSeg" step="1" min="0" max="59" placeholder="seg" style="flex: 1;">
+                    <span>seg</span>
+                </div>
             </div>
 
             <div class="resultado">
@@ -233,7 +238,9 @@
             // Obtener valores
             const altura = parseFloat(document.getElementById('altura').value) || 0;
             const ancho = parseFloat(document.getElementById('ancho').value) || 0;
-            const tiempo = parseFloat(document.getElementById('tiempo').value) || 0;
+            const tiempoMin = parseFloat(document.getElementById('tiempoMin').value) || 0;
+            const tiempoSeg = parseFloat(document.getElementById('tiempoSeg').value) || 0;
+            const tiempo = tiempoMin + tiempoSeg / 60.000; // tiempo total en minutos decimales
 
             // Resultado 1: altura * ancho * 0.8735 (costo por cm2 de MDF, actualizado jun-2026)
             const resultado1 = altura * ancho * 0.8735;
@@ -273,7 +280,8 @@
         // Calcular automáticamente cuando se cambian los inputs
         document.getElementById('altura').addEventListener('input', calcular);
         document.getElementById('ancho').addEventListener('input', calcular);
-        document.getElementById('tiempo').addEventListener('input', calcular);
+        document.getElementById('tiempoMin').addEventListener('input', calcular);
+        document.getElementById('tiempoSeg').addEventListener('input', calcular);
     </script>
 </body>
 </html>
